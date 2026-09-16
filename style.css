@@ -1,0 +1,1259 @@
+/* ==========================================================================
+   CAIXINHA SURPRESA - BARBOSA SUPERMERCADOS
+   Estilos Principais & Design Visual Mobile
+   ========================================================================== */
+
+/* --- Font Faces --- */
+@font-face {
+  font-family: 'TCCC-UnityText';
+  src: local('TCCC-UnityText Black'), 
+       url('fonts/TCCC-UnityText-Black.ttf') format('truetype'),
+       url('fonts/TCCC-UnityText Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TCCC-UnityText';
+  src: local('TCCC-UnityText Bold'), 
+       url('fonts/TCCC-UnityText-Bold.ttf') format('truetype'),
+       url('fonts/TCCC-UnityText Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TCCC-UnityText';
+  src: local('TCCC-UnityText Medium'), 
+       url('fonts/TCCC-UnityText-Medium.ttf') format('truetype'),
+       url('fonts/TCCC-UnityText Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TCCC-UnityText';
+  src: local('TCCC-UnityText Light'), 
+       url('fonts/TCCC-UnityText-Light.ttf') format('truetype'),
+       url('fonts/TCCC-UnityText Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Aliases */
+@font-face {
+  font-family: 'TCCC-UnityText Black';
+  src: local('TCCC-UnityText Black'), 
+       url('fonts/TCCC-UnityText-Black.ttf') format('truetype');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'TCCC-UnityText Medium';
+  src: local('TCCC-UnityText Medium'), 
+       url('fonts/TCCC-UnityText-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+/* --- Variáveis Globais de Cores e Estilos --- */
+:root {
+  --color-primary-dark: #010347;
+  --color-yellow: #fdf000;
+  --color-red: #ed1c24;
+  --color-blue-card: #279dff;
+  --color-blue-light: #52b5ff;
+  --color-white: #ffffff;
+  --font-black: 'TCCC-UnityText Black', 'TCCC-UnityText', 'Montserrat', 'Arial Black', sans-serif;
+  --font-medium: 'TCCC-UnityText Medium', 'TCCC-UnityText', 'Segoe UI', sans-serif;
+  --font-base: 'TCCC-UnityText', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --app-max-width: 440px;
+  --app-height: 880px;
+}
+
+/* --- Reset & Base --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-base);
+  background: #000222;
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Container Responsivo / Device Wrapper --- */
+.device-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0;
+  background: radial-gradient(circle at 50% 30%, #030a5c 0%, #00021c 100%);
+}
+
+@media (min-width: 480px) {
+  .device-wrapper {
+    padding: 20px 16px;
+  }
+}
+
+/* --- Mobile Screen Container --- */
+.mobile-screen {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-max-width);
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #08216f;
+  background-image: url('assets/bg.png');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 480px) {
+  .mobile-screen {
+    height: var(--app-height);
+    border-radius: 40px;
+    border: 9px solid #1f253d;
+  }
+}
+
+/* --- Camada de Fundo Decorativa (Balões e Partículas) --- */
+.bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.balloon-decor {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.balloon-1 {
+  top: 85px;
+  left: -28px;
+  width: 82px;
+  animation: floatGentle1 6s ease-in-out infinite alternate;
+}
+
+.balloon-2 {
+  top: 180px;
+  right: -35px;
+  width: 110px;
+  opacity: 0.7;
+  filter: blur(0.5px);
+  animation: floatGentle2 7s ease-in-out infinite alternate;
+}
+
+.balloon-3 {
+  bottom: 80px;
+  left: -20px;
+  width: 75px;
+  opacity: 0.6;
+  animation: floatGentle1 8s ease-in-out infinite alternate-reverse;
+}
+
+.balloon-4 {
+  bottom: 140px;
+  right: -25px;
+  width: 95px;
+  opacity: 0.65;
+  animation: floatGentle2 7.5s ease-in-out infinite alternate;
+}
+
+.balloon-decor img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes floatGentle1 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-16px) rotate(4deg); }
+}
+
+@keyframes floatGentle2 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(-5deg); }
+}
+
+/* Partículas cintilantes */
+.sparkle-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-yellow);
+  opacity: 0.6;
+  animation: twinkle 3s infinite alternate;
+}
+.sp-1 { top: 120px; left: 20%; animation-delay: 0.2s; }
+.sp-2 { top: 160px; right: 25%; animation-delay: 1.1s; }
+.sp-3 { top: 380px; left: 10%; animation-delay: 0.7s; }
+.sp-4 { top: 480px; right: 15%; animation-delay: 1.8s; }
+
+@keyframes twinkle {
+  0% { transform: scale(0.6); opacity: 0.2; }
+  100% { transform: scale(1.3); opacity: 0.9; }
+}
+
+/* --- Barra Superior (#010347) --- */
+.top-bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primary-dark);
+  height: 64px;
+  padding: 0 18px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(253, 240, 0, 0.25);
+  flex-shrink: 0;
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.barbosa-logo {
+  height: 38px;
+  width: auto;
+  max-width: 125px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botão de alternância de som */
+.sound-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.sound-toggle-btn:hover {
+  background: rgba(253, 240, 0, 0.15);
+  transform: scale(1.08);
+}
+
+.sound-toggle-btn svg {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Ícone de Menu Hambúrguer (3 barras amarelas #fdf000 proporcionais) */
+.hamburger-menu-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.hamburger-menu-btn:hover {
+  background: rgba(253, 240, 0, 0.15);
+  transform: scale(1.06);
+}
+
+.hamburger-menu-btn .bar {
+  width: 25px;
+  height: 3.5px;
+  background-color: var(--color-yellow);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+/* --- Área Principal de Conteúdo --- */
+.game-content {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly; /* Distribui harmoniosamente o espaço entre topo, meio e base */
+  padding: 16px 16px 32px 16px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.game-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Agrupamento do cabeçalho da gamificação (título, instruções e contador de chances) */
+.game-header-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* --- Título em duas linhas e Texto Instrucional --- */
+.hero-text-wrapper {
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.main-title {
+  font-family: var(--font-black);
+  font-size: 29px;
+  line-height: 1.08;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 4px 12px rgba(1, 3, 71, 0.8),
+    0 0 25px rgba(253, 240, 0, 0.35);
+  margin-bottom: 6px;
+}
+
+@media (min-width: 380px) {
+  .main-title {
+    font-size: 33px;
+  }
+}
+
+.instruction-text {
+  font-family: var(--font-medium);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-white);
+  max-width: 310px;
+  margin: 0 auto;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 380px) {
+  .instruction-text {
+    font-size: 14.5px;
+  }
+}
+
+/* --- Banner de Chances: Espaçamentos harmonizados sem buracos --- */
+.chances-banner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+
+.chances-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-yellow);
+  border-radius: 40px;
+  padding: 5px 20px;
+  box-shadow: 
+    0 6px 18px rgba(0, 0, 0, 0.35),
+    inset 0 2px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(200, 190, 0, 0.5);
+  border: 2px solid #fffb8f;
+  position: relative;
+  min-width: 250px;
+}
+
+.chances-text {
+  font-family: var(--font-black);
+  font-size: 15.5px;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.chances-text.text-left {
+  margin-right: 12px;
+}
+
+.chances-text.text-right {
+  margin-left: 12px;
+}
+
+/* Círculo vermelho proeminente #ed1c24 com o número 16 em branco */
+.chances-circle-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chances-badge {
+  width: 46px;
+  height: 46px;
+  background: radial-gradient(circle at 35% 30%, #ff4b52 0%, var(--color-red) 70%, #b80d13 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-family: var(--font-black);
+  font-size: 23px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(237, 28, 36, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffffff;
+  transform: scale(1.05);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chances-badge.pop-anim {
+  animation: badgePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes badgePop {
+  0% { transform: scale(1.05); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1.05); }
+}
+
+/* Seta em chevron branca apontando para baixo */
+.chevron-indicator {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounceDown 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* --- Metade Inferior: Grade 2x2 de Cartões Azuis #279dff --- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 356px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+@media (min-height: 780px) {
+  .game-content {
+    padding: 20px 16px 36px 16px;
+  }
+  .cards-grid {
+    gap: 16px;
+    max-width: 364px;
+  }
+}
+
+.box-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #48b0ff 0%, var(--color-blue-card) 60%, #1579d4 100%);
+  border-radius: 24px;
+  border: 2.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 10px 22px rgba(1, 3, 71, 0.5),
+    0 0 16px rgba(39, 157, 255, 0.45),
+    inset 0 3px 6px rgba(255, 255, 255, 0.6),
+    inset 0 -3px 8px rgba(1, 3, 71, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease, border-color 0.25s ease;
+  outline: none;
+}
+
+.box-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: #ffffff;
+  box-shadow: 
+    0 14px 28px rgba(1, 3, 71, 0.6),
+    0 0 24px rgba(39, 157, 255, 0.7),
+    inset 0 3px 6px rgba(255, 255, 255, 0.8);
+}
+
+.box-card:active {
+  transform: scale(0.95);
+  box-shadow: 
+    0 5px 12px rgba(1, 3, 71, 0.6),
+    0 0 10px rgba(39, 157, 255, 0.5);
+}
+
+/* Leve brilho / sheen sobre o cartão */
+.card-glow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 22px 22px 50% 50%;
+  pointer-events: none;
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.box-card:hover .card-shine {
+  opacity: 1;
+}
+
+.box-image-wrap {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.box-card:hover .box-image-wrap {
+  transform: scale(1.07);
+}
+
+.box-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(1, 3, 71, 0.45));
+}
+
+/* --- Slide-over Menu Lateral --- */
+.side-menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.side-menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.side-menu-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 300px;
+  height: 100%;
+  background: var(--color-primary-dark);
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 24px 20px;
+}
+
+.side-menu-overlay.open .side-menu-panel {
+  transform: translateX(0);
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.menu-logo {
+  height: 34px;
+  object-fit: contain;
+}
+
+.menu-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-yellow);
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-medium);
+  font-size: 15px;
+  border-radius: 12px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.menu-link:hover, .menu-link.active {
+  background: rgba(253, 240, 0, 0.15);
+  color: var(--color-yellow);
+}
+
+.menu-footer {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   MODAIS DA GAMIFICAÇÃO
+   ========================================================================== */
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   MODAL 1: SUSPENSE (AFTER-DELAY 3 SEGUNDOS)
+   Cor de fundo estritamente #279dff
+   -------------------------------------------------------------------------- */
+.modal-suspense {
+  background-color: var(--color-blue-card); /* #279dff */
+  z-index: 60;
+  overflow: hidden;
+}
+
+.modal-suspense-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+/* Efeito radial pulsante de raios */
+.suspense-radial-rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(39, 157, 255, 0) 70%);
+  transform: translate(-50%, -50%);
+  animation: pulseRays 2.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes pulseRays {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.9; }
+}
+
+.suspense-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.suspense-badge {
+  font-family: var(--font-black);
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: var(--color-primary-dark);
+  background: var(--color-yellow);
+  padding: 6px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  margin-bottom: 24px;
+  animation: bounceBadge 1s infinite alternate;
+}
+
+@keyframes bounceBadge {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+/* Wrapper da caixinha semiaberta com animação em looping de balanço lateral */
+.rocking-box-wrapper {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.suspense-magic-glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(253, 240, 0, 0.6) 0%, rgba(255, 255, 255, 0.3) 45%, transparent 75%);
+  border-radius: 50%;
+  filter: blur(12px);
+  animation: magicPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes magicPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Animação em looping de balanço (wobble/rocking) */
+.rocking-box-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(1, 3, 71, 0.45));
+  transform-origin: bottom center;
+  animation: boxRockingLoop 0.75s ease-in-out infinite alternate;
+}
+
+@keyframes boxRockingLoop {
+  0% {
+    transform: rotate(-9deg) translateY(0px) scale(1.02);
+  }
+  50% {
+    transform: rotate(0deg) translateY(-8px) scale(1.05);
+  }
+  100% {
+    transform: rotate(9deg) translateY(0px) scale(1.02);
+  }
+}
+
+.suspense-title {
+  font-family: var(--font-black);
+  font-size: 22px;
+  color: var(--color-white);
+  text-shadow: 0 2px 8px rgba(1, 3, 71, 0.6);
+  margin-bottom: 16px;
+}
+
+/* Barra de progresso de 3 segundos */
+.suspense-progress-bar {
+  width: 220px;
+  height: 10px;
+  background: rgba(1, 3, 71, 0.35);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+.progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ffe600 0%, #ff5252 100%);
+  border-radius: 8px;
+  transition: width 0.1s linear;
+}
+
+.suspense-countdown {
+  font-family: var(--font-medium);
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   MODAL 2: RESULTADO (WIN & LOSE)
+   -------------------------------------------------------------------------- */
+.modal-result {
+  background-color: rgba(1, 3, 71, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 70;
+  padding: 16px;
+}
+
+.confetti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 90;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(175deg, #0d226b 0%, #030a47 100%);
+  border: 3px solid var(--color-yellow);
+  border-radius: 28px;
+  padding: 24px 18px 20px 18px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(253, 240, 0, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  text-align: center;
+  transform: scale(0.85);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 80;
+  max-height: 92vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.modal-card::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-result.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-close-icon {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.modal-close-icon:hover {
+  background: var(--color-red);
+  transform: scale(1.1);
+}
+
+/* Área visual do resultado: Composição da Caixinha + Cupom Vale Compras */
+.result-visual {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-visual-duo {
+  width: 310px;
+  height: 145px;
+  margin: 0 auto 8px auto;
+  position: relative;
+}
+
+.win-items-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Caixinha aberta posicionada à esquerda */
+.win-box-left {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.65));
+  z-index: 2;
+  animation: floatBox 3s ease-in-out infinite alternate;
+}
+
+/* Imagem do Cupom Vale Compras R$ 200 à direita */
+.coupon-img-right {
+  position: absolute;
+  right: 0px;
+  top: 14px;
+  width: 162px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.7));
+  transform: rotate(5deg);
+  z-index: 3;
+  animation: floatCoupon 3s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatBox {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+@keyframes floatCoupon {
+  0% { transform: rotate(5deg) translateY(0); }
+  100% { transform: rotate(7deg) translateY(-5px); }
+}
+
+.result-box-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
+  z-index: 2;
+}
+
+/* Elementos visuais da Vitória */
+.win-sparkle-burst {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(253, 240, 0, 0.45) 0%, rgba(255, 255, 255, 0.2) 40%, transparent 70%);
+  border-radius: 50%;
+  animation: rotateGlow 10s linear infinite;
+  z-index: 1;
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Elementos visuais de Não Ganhou */
+.empty-box-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lose-img {
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5)) grayscale(0.2);
+}
+
+.empty-tag {
+  position: absolute;
+  bottom: 10px;
+  background: rgba(1, 3, 71, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-family: var(--font-black);
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  z-index: 3;
+}
+
+/* Tipografia dos Resultados */
+.result-title {
+  font-family: var(--font-black);
+  font-size: 32px;
+  line-height: 1.12;
+  margin-bottom: 6px;
+}
+
+.win-title {
+  color: var(--color-yellow);
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(253, 240, 0, 0.5);
+}
+
+.lose-title {
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.result-message {
+  font-family: var(--font-medium);
+  font-size: 14.5px;
+  line-height: 1.35;
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+/* "R$ 200,00" aumentado para o mesmo tamanho da fonte do "Parabéns" (32px) */
+.highlight-prize {
+  color: var(--color-yellow);
+  font-family: var(--font-black);
+  font-size: 32px;
+  line-height: 1.1;
+  display: block;
+  margin-top: 4px;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(253, 240, 0, 0.6);
+  letter-spacing: 0.5px;
+}
+
+/* Caixa de Instrução de Resgate Hub4Pay */
+.rescue-info-box {
+  background: rgba(1, 3, 71, 0.65);
+  border: 1.5px dashed rgba(253, 240, 0, 0.6);
+  border-radius: 16px;
+  padding: 10px 14px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.rescue-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.rescue-title {
+  font-family: var(--font-black);
+  font-size: 12.5px;
+  color: var(--color-yellow);
+  text-transform: uppercase;
+}
+
+.rescue-desc {
+  font-family: var(--font-medium);
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.rescue-desc strong {
+  color: var(--color-yellow);
+}
+
+/* Caixa de incentivo da derrota */
+.lose-info-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.lose-desc {
+  font-family: var(--font-medium);
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Botões de Ação do Modal */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-family: var(--font-black);
+  font-size: 14.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, filter 0.2s ease;
+  outline: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Botão Hub4Pay */
+.btn-hub4pay {
+  background: linear-gradient(135deg, #fff740 0%, var(--color-yellow) 60%, #e6d800 100%);
+  color: var(--color-primary-dark);
+  box-shadow: 
+    0 6px 18px rgba(253, 240, 0, 0.45),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(180, 170, 0, 0.5);
+  border: 1.5px solid #ffffff;
+}
+
+.btn-hub4pay:hover {
+  box-shadow: 0 8px 22px rgba(253, 240, 0, 0.6);
+  filter: brightness(1.05);
+}
+
+/* Botão Jogar Novamente: Diagramação limpa e sem quebras estranhas */
+.btn-play-again {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.btn-play-again:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+}
+
+.btn-play-again .btn-text-main {
+  font-family: var(--font-black);
+  font-size: 13.5px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.btn-play-again .btn-chances-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: var(--font-medium);
+  font-size: 12px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* Botão Jogar Novamente na tela Não Ganhou (Amarelo destacado) */
+.btn-lose-play-again {
+  background: linear-gradient(135deg, #fff740 0%, var(--color-yellow) 60%, #e6d800 100%);
+  color: var(--color-primary-dark);
+  box-shadow: 
+    0 6px 18px rgba(253, 240, 0, 0.45),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  border: 1.5px solid #ffffff;
+}
+
+.btn-lose-play-again:hover {
+  filter: brightness(1.05);
+}
+
+.btn-lose-play-again .btn-text-main {
+  color: var(--color-primary-dark);
+}
+
+.btn-lose-play-again .btn-chances-badge {
+  background: rgba(1, 3, 71, 0.14);
+  border: 1px solid rgba(1, 3, 71, 0.25);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}

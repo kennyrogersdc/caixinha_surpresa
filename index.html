@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Caixinha Surpresa - Barbosa Supermercados</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="assets/logo_barbosa.png">
+</head>
+<body>
+
+  <!-- Mockup wrapper para centralização e proporções verticais mobile -->
+  <div class="device-wrapper">
+    <main class="mobile-screen" id="app">
+
+      <!-- Fundo com degradê, confetes e balões temáticos flutuantes -->
+      <div class="bg-layer" aria-hidden="true">
+        <div class="balloon-decor balloon-1">
+          <img src="assets/balao.png" alt="" draggable="false">
+        </div>
+        <div class="balloon-decor balloon-2">
+          <img src="assets/balao_blur.png" alt="" draggable="false">
+        </div>
+        <div class="balloon-decor balloon-3">
+          <img src="assets/balao.png" alt="" draggable="false">
+        </div>
+        <div class="balloon-decor balloon-4">
+          <img src="assets/balao_blur.png" alt="" draggable="false">
+        </div>
+        <div class="sparkle-particle sp-1"></div>
+        <div class="sparkle-particle sp-2"></div>
+        <div class="sparkle-particle sp-3"></div>
+        <div class="sparkle-particle sp-4"></div>
+      </div>
+
+      <!-- Barra Superior (#010347) -->
+      <header class="top-bar">
+        <div class="header-logo-container">
+          <img src="assets/logo_barbosa.png" alt="Barbosa Supermercados" class="barbosa-logo">
+        </div>
+        
+        <div class="header-actions">
+          <!-- Botão de controle de som -->
+          <button class="sound-toggle-btn" id="soundToggleBtn" title="Ativar/Desativar Efeitos Sonoros" aria-label="Alternar som">
+            <svg class="sound-on-icon" viewBox="0 0 24 24" width="22" height="22" fill="#fdf000">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg class="sound-off-icon hidden" viewBox="0 0 24 24" width="22" height="22" fill="#fdf000">
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27l4.73 4.73H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+            </svg>
+          </button>
+
+          <!-- Ícone de Menu Hambúrguer (3 barras amarelas #fdf000 proporcionais) -->
+          <button class="hamburger-menu-btn" id="menuToggleBtn" aria-label="Abrir Menu Principal">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Conteúdo Principal do Jogo -->
+      <section class="game-content">
+        
+        <!-- Bloco do Cabeçalho da Gamificação -->
+        <div class="game-header-group">
+          <!-- Título em duas linhas e texto instrucional -->
+          <div class="hero-text-wrapper">
+            <h1 class="main-title">CAIXINHA<br>SURPRESA</h1>
+            <p class="instruction-text">Escolha uma caixinha e descubra na hora se você ganhou um prêmio instantâneo!</p>
+          </div>
+
+          <!-- Banner de Chances (#fdf000 banner, #010347 texto, círculo vermelho #ed1c24) -->
+          <div class="chances-banner-container">
+            <div class="chances-banner">
+              <span class="chances-text text-left">Você tem</span>
+              <div class="chances-circle-wrapper">
+                <div class="chances-badge" id="chancesCount">16</div>
+              </div>
+              <span class="chances-text text-right">chances</span>
+            </div>
+
+            <!-- Seta em chevron branca apontando para baixo -->
+            <div class="chevron-indicator" aria-hidden="true">
+              <svg width="30" height="16" viewBox="0 0 32 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3L16 15L29 3" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade 2x2 de Caixinhas Surpresa (#279dff) -->
+        <div class="cards-grid" role="region" aria-label="Grade de caixinhas surpresa">
+          
+          <button class="box-card" data-box-id="1" aria-label="Caixinha Surpresa 1">
+            <div class="card-glow-overlay"></div>
+            <div class="card-shine"></div>
+            <div class="box-image-wrap">
+              <img src="assets/caixinha_fechada.png" alt="Caixinha Surpresa Fechada" class="box-img">
+            </div>
+          </button>
+
+          <button class="box-card" data-box-id="2" aria-label="Caixinha Surpresa 2">
+            <div class="card-glow-overlay"></div>
+            <div class="card-shine"></div>
+            <div class="box-image-wrap">
+              <img src="assets/caixinha_fechada.png" alt="Caixinha Surpresa Fechada" class="box-img">
+            </div>
+          </button>
+
+          <button class="box-card" data-box-id="3" aria-label="Caixinha Surpresa 3">
+            <div class="card-glow-overlay"></div>
+            <div class="card-shine"></div>
+            <div class="box-image-wrap">
+              <img src="assets/caixinha_fechada.png" alt="Caixinha Surpresa Fechada" class="box-img">
+            </div>
+          </button>
+
+          <button class="box-card" data-box-id="4" aria-label="Caixinha Surpresa 4">
+            <div class="card-glow-overlay"></div>
+            <div class="card-shine"></div>
+            <div class="box-image-wrap">
+              <img src="assets/caixinha_fechada.png" alt="Caixinha Surpresa Fechada" class="box-img">
+            </div>
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- Painel Lateral / Drawer do Menu -->
+      <div class="side-menu-overlay" id="sideMenuOverlay">
+        <aside class="side-menu-panel">
+          <div class="menu-header">
+            <img src="assets/logo_barbosa.png" alt="Barbosa" class="menu-logo">
+            <button class="menu-close-btn" id="menuCloseBtn" aria-label="Fechar menu">&times;</button>
+          </div>
+          <nav class="menu-nav">
+            <a href="#" class="menu-link active"><span>🎁</span> Caixinha Surpresa</a>
+            <a href="#" class="menu-link"><span>📜</span> Regulamento da Campanha</a>
+            <a href="#" class="menu-link"><span>🏆</span> Ganhadores Instantâneos</a>
+            <a href="#" class="menu-link"><span>💳</span> Carteira Hub4Pay</a>
+            <a href="#" class="menu-link"><span>❓</span> Dúvidas Frequentes</a>
+          </nav>
+          <div class="menu-footer">
+            <p>Barbosa Supermercados</p>
+            <small>Campanha Promocional Varejo 2026</small>
+          </div>
+        </aside>
+      </div>
+
+      <!-- MODAL 1: SUSPENSE / AFTER-DELAY (3 SEGUNDOS) COM FUNDO #279dff -->
+      <div class="modal-overlay modal-suspense" id="modalSuspense" aria-hidden="true">
+        <div class="modal-suspense-container">
+          
+          <!-- Efeito de raios radiais luminosos -->
+          <div class="suspense-radial-rays"></div>
+
+          <div class="suspense-content">
+            <div class="suspense-badge">ABRINDO SUA CAIXINHA</div>
+            
+            <!-- Caixinha com animação em looping de balanço lateral -->
+            <div class="rocking-box-wrapper">
+              <div class="suspense-magic-glow"></div>
+              <img src="assets/caixinha_aberta.png" alt="Caixinha Surpresa Semiaberta" class="rocking-box-img">
+            </div>
+
+            <p class="suspense-title">Cruzando os dedos...</p>
+            
+            <!-- Barra de progresso de 3 segundos -->
+            <div class="suspense-progress-bar">
+              <div class="progress-bar-fill" id="suspenseProgressFill"></div>
+            </div>
+            <p class="suspense-countdown" id="suspenseTimerText">Revelando em 3s...</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODAL 2: RESULTADO (GANHOU OU NÃO GANHOU) -->
+      <div class="modal-overlay modal-result" id="modalResult" aria-hidden="true">
+        
+        <!-- Canvas para confetes comemorativos -->
+        <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+        <div class="modal-card" id="modalResultCard">
+
+          <!-- Botão de fechar modal -->
+          <button class="modal-close-icon" id="resultModalCloseBtn" aria-label="Fechar modal">&times;</button>
+
+          <!-- CONTEÚDO QUANDO GANHA ("Parabéns!") -->
+          <div class="result-body win-state" id="resultWinState">
+            
+            <!-- Composição visual: Caixinha aberta à esquerda + Cupom Vale Compras R$ 200 à direita -->
+            <div class="result-visual win-visual-duo">
+              <div class="win-sparkle-burst"></div>
+              <div class="win-items-wrap">
+                <img src="assets/caixinha_aberta.png" alt="Caixinha Aberta" class="win-box-left">
+                <img src="assets/vale_compras_200.png" alt="Vale Compras R$ 200" class="coupon-img-right">
+              </div>
+            </div>
+
+            <h2 class="result-title win-title">Parabéns!</h2>
+            
+            <p class="result-message win-message">
+              Você encontrou a caixinha premiada<br>
+              e ganhou um prêmio instantâneo de:
+              <strong class="highlight-prize">R$ 200,00</strong>
+            </p>
+
+            <div class="rescue-info-box">
+              <div class="rescue-header">
+                <span class="rescue-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fdf000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </span>
+                <span class="rescue-title">Como resgatar seu prêmio:</span>
+              </div>
+              <p class="rescue-desc">
+                O valor será creditado diretamente na sua carteira digital <strong>Hub4Pay</strong> vinculada ao seu CPF em até 24h.
+              </p>
+            </div>
+
+            <div class="modal-actions">
+              <a href="https://hub4pay.com.br" target="_blank" rel="noopener noreferrer" class="btn btn-hub4pay">
+                <span>Acessar Hub4Pay</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              
+              <!-- Botão Jogar Novamente diagramado com hierarquia e sem quebras estranhas -->
+              <button class="btn btn-play-again" id="btnPlayAgainWin">
+                <span class="btn-text-main">JOGAR NOVAMENTE</span>
+                <span class="btn-chances-badge">(<span class="remaining-chances-count">15</span>&nbsp;chances)</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- CONTEÚDO QUANDO NÃO GANHA ("Poxa vida...") -->
+          <div class="result-body lose-state hidden" id="resultLoseState">
+            
+            <div class="result-visual">
+              <div class="empty-box-wrap">
+                <img src="assets/caixinha_aberta.png" alt="Caixinha Vazia" class="result-box-img lose-img">
+                <div class="empty-tag">Vazia</div>
+              </div>
+            </div>
+
+            <h2 class="result-title lose-title">Poxa vida...</h2>
+            
+            <p class="result-message lose-message">
+              A caixinha está vazia.
+            </p>
+
+            <div class="lose-info-box">
+              <p class="lose-desc">
+                Não desanime! Continue participando: quanto mais você comprar e cadastrar, mais chances tem de ganhar!
+              </p>
+            </div>
+
+            <div class="modal-actions">
+              <!-- Botão Jogar Novamente diagramado com harmonia -->
+              <button class="btn btn-play-again btn-lose-play-again" id="btnPlayAgainLose">
+                <span class="btn-text-main">JOGAR NOVAMENTE</span>
+                <span class="btn-chances-badge">(<span class="remaining-chances-count">15</span> chances)</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
