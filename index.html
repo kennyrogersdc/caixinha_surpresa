@@ -191,13 +191,10 @@
           <!-- CONTEÚDO QUANDO GANHA ("Parabéns!") -->
           <div class="result-body win-state" id="resultWinState">
             
-            <!-- Composição visual: Caixinha aberta à esquerda + Cupom Vale Compras R$ 200 à direita -->
-            <div class="result-visual win-visual-duo">
+            <!-- Composição visual: Imagem única da caixinha aberta com o cupom Vale Compras R$ 200 -->
+            <div class="result-visual win-visual-single">
               <div class="win-sparkle-burst"></div>
-              <div class="win-items-wrap">
-                <img src="assets/caixinha_aberta.png" alt="Caixinha Aberta" class="win-box-left">
-                <img src="assets/vale_compras_200.png" alt="Vale Compras R$ 200" class="coupon-img-right">
-              </div>
+              <img src="assets/caixinha aberta_ganhou_R$_200.png" onerror="this.src='assets/caixinha_aberta_ganhou_200.png'" alt="Caixinha Premiada Vale Compras R$ 200" class="win-single-img">
             </div>
 
             <h2 class="result-title win-title">Parabéns!</h2>
@@ -244,11 +241,8 @@
           <!-- CONTEÚDO QUANDO NÃO GANHA ("Poxa vida...") -->
           <div class="result-body lose-state hidden" id="resultLoseState">
             
-            <div class="result-visual">
-              <div class="empty-box-wrap">
-                <img src="assets/caixinha_aberta.png" alt="Caixinha Vazia" class="result-box-img lose-img">
-                <div class="empty-tag">Vazia</div>
-              </div>
+            <div class="result-visual lose-visual">
+              <img src="assets/caixinha_aberta_vazia.png" alt="Caixinha Vazia" class="lose-box-img">
             </div>
 
             <h2 class="result-title lose-title">Poxa vida...</h2>
