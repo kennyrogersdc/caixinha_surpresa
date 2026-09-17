@@ -10,6 +10,7 @@
   const state = {
     chances: 16,
     isPlaying: false,
+    isShuffling: false,
     soundEnabled: true,
     lastResult: 'lose',
     audioCtx: null,
@@ -141,6 +142,32 @@
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.35);
+    },
+
+    // Som rápido e dinâmico de embaralhamento das caixinhas
+    shuffleSound() {
+      if (!state.soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        [0, 0.16, 0.34].forEach((t, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          const startFreq = idx === 1 ? 420 : 340;
+          const endFreq = idx === 1 ? 580 : 480;
+          osc.frequency.setValueAtTime(startFreq, ctx.currentTime + t);
+          osc.frequency.exponentialRampToValueAtTime(endFreq, ctx.currentTime + t + 0.1);
+          gain.gain.setValueAtTime(0.16, ctx.currentTime + t);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + t + 0.1);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + t);
+          osc.stop(ctx.currentTime + t + 0.1);
+        });
+      } catch (e) {
+        // Fallback seguro se o áudio não estiver disponível
+      }
     }
   };
 
@@ -250,7 +277,7 @@
 
   // --- Fluxo de Seleção de Caixinha ---
   function handleBoxSelection(boxCard) {
-    if (state.isPlaying) return;
+    if (state.isPlaying || state.isShuffling) return;
 
     // Reset automático se as chances estiverem zeradas
     if (state.chances <= 0) {
@@ -331,6 +358,74 @@
     state.isPlaying = false;
   }
 
+  // --- Embaralhamento Rápido e Randômico das Caixinhas ---
+  function shuffleCards() {
+    if (boxCards.length < 4 || state.isShuffling) return;
+    state.isShuffling = true;
+
+    // Coleta as posições físicas atuais de cada caixinha na tela
+    const rects = Array.from(boxCards).map(c => c.getBoundingClientRect());
+    if (!rects[0] || rects[0].width === 0) {
+      state.isShuffling = false;
+      return;
+    }
+
+    // Permutações completas onde todos os boxes trocam de posição
+    const permutations = [
+      [3, 2, 1, 0], // Cruzamento em X (baixo-direita vai para cima-esquerda, etc)
+      [1, 0, 3, 2], // Troca horizontal
+      [2, 3, 0, 1], // Troca vertical
+      [1, 2, 3, 0], // Rotação horária
+      [3, 0, 1, 2], // Rotação anti-horária
+      [2, 0, 3, 1], // Diagonal mista
+      [1, 3, 0, 2]  // Diagonal cruzada
+    ];
+
+    // Sorteia duas permutações distintas para criar dois movimentos rápidos seguidos
+    const idx1 = Math.floor(Math.random() * permutations.length);
+    let idx2 = Math.floor(Math.random() * permutations.length);
+    while (idx2 === idx1) {
+      idx2 = Math.floor(Math.random() * permutations.length);
+    }
+    const p1 = permutations[idx1];
+    const p2 = permutations[idx2];
+
+    soundEffects.shuffleSound();
+
+    let finishedCount = 0;
+
+    boxCards.forEach((card, i) => {
+      const dx1 = rects[p1[i]].left - rects[i].left;
+      const dy1 = rects[p1[i]].top - rects[i].top;
+
+      const dx2 = rects[p2[i]].left - rects[i].left;
+      const dy2 = rects[p2[i]].top - rects[i].top;
+
+      // Z-index para sobreposição livre durante o movimento
+      card.style.zIndex = (15 + i).toString();
+
+      const anim = card.animate([
+        { transform: 'translate(0px, 0px) scale(1)', boxShadow: '0 10px 22px rgba(1, 3, 71, 0.5)' },
+        { transform: `translate(${dx1}px, ${dy1}px) scale(1.05)`, boxShadow: '0 18px 30px rgba(1, 3, 71, 0.7), 0 0 20px rgba(39, 157, 255, 0.6)', offset: 0.35 },
+        { transform: `translate(${dx2}px, ${dy2}px) scale(1.05)`, boxShadow: '0 18px 30px rgba(1, 3, 71, 0.7), 0 0 20px rgba(39, 157, 255, 0.6)', offset: 0.70 },
+        { transform: 'translate(0px, 0px) scale(1)', boxShadow: '0 10px 22px rgba(1, 3, 71, 0.5)' }
+      ], {
+        duration: 650,
+        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+        fill: 'none'
+      });
+
+      anim.onfinish = () => {
+        card.style.zIndex = '';
+        card.style.transform = '';
+        finishedCount++;
+        if (finishedCount === boxCards.length) {
+          state.isShuffling = false;
+        }
+      };
+    });
+  }
+
   // --- Fechar Modal de Resultado / Jogar Novamente ---
   function closeResultModal() {
     modalResult.classList.remove('active');
@@ -342,6 +437,11 @@
       state.chances = 16;
       updateChancesDisplay();
     }
+
+    // Assim que fechar o modal e voltar para a tela inicial, embaralha rapidamente os boxes
+    setTimeout(() => {
+      shuffleCards();
+    }, 180);
   }
 
   // --- Event Listeners dos Cards de Caixinha ---
